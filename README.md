@@ -1,14 +1,14 @@
 ```
 :::██████╗██████╗ ██████╗:::::██████╗::█████╗:::
 ::██╔════╝██╔══██╗██╔══██╗:::██╔═████╗██╔══██╗::
-::██║:::::██████╔╝██████╔╝:::██║██╔██║╚█████╔╝::
-::██║:::::██╔═══╝ ██╔═══╝::::████╔╝██║██╔══██╗::
-::╚██████╗██║:::::██║::::::::╚██████╔╝╚█████╔╝::
+::██║:::::██████╔╝██████╔╝:::██║██╔██║╚██████║::
+::██║:::::██╔═══╝ ██╔═══╝::::████╔╝██║:╚═══██║::
+::╚██████╗██║:::::██║::::::::╚██████╔╝:█████╔╝::
 :::╚═════╝╚═╝:::::╚═╝:::::::::╚═════╝::╚════╝:::
 ```
 
 *This module is designed to help you understand\
-templated containers, iterators and algorithms in CPP.*
+the containers in CPP.*
 
  Skills | Grade |
 :------:|:-----:|
@@ -68,18 +68,21 @@ templated containers, iterators and algorithms in CPP.*
 *Divida o código da sua classe em dois arquivos. O arquivo de cabeçalho (.hpp/.h) contém a definição da classe, enquanto o arquivo de origem (.cpp) contém a implementação.*
 
 ## Module-specific rules
-- Você notará que, neste módulo, os exercícios podem ser resolvidos SEM os Containers padrão e SEM os Algoritmos padrão.
+- É obrigatório usar os contêineres padrão para executar cada exercício neste módulo.
+- Uma vez que um contêiner é usado, você não pode usá-lo para o resto do módulo.
 
-- No entanto, **usá-los é precisamente o objetivo deste Módulo**. Você tem permissão para usar o STL. Sim, você pode usar os **Containers** (vetor/lista/mapa/e assim por diante) e os **Algoritmos** (definidos no cabeçalho \<algoritmo\>). Além disso, você deve usá-los o máximo que puder. Portanto, faça o seu melhor para aplicá-los onde for apropriado.
+***É aconselhável ler o subject na íntegra antes de fazer os exercícios.***
 
-- Você receberá uma nota muito ruim se não fizer isso, mesmo que seu código funcione como esperado. Por favor, não seja preguiçoso.
+***Você deve usar pelo menos um contêiner para cada exercício, com a exceção do exercício 02, que requer o uso de dois contêineres.***
 
-- Você pode definir seus modelos nos arquivos de cabeçalho como de costume. Ou, se quiser, pode escrever suas declarações de modelo nos arquivos de cabeçalho e escrever suas implementações em arquivos .tpp. Em qualquer caso, os arquivos de cabeçalho são obrigatórios, enquanto os arquivos .tpp são opcionais.
+- Você deve enviar um Makefile para cada programa que compilará seus arquivos de origem para a saída necessária com os sinalizadores -Wall, -Wextra e -Werror.
+- Você deve usar c++, e seu Makefile não deve relinkar.
+- Seu Makefile deve conter pelo menos as regras $(NAME), all, clean, fclean e re.
 
 ## Study resources
 Resource | Source
 ---------|:-----:
-[CPP Module 08](https://github.com/faleite/42cpp00/wiki/Module-IX) | `Wiki`
+[CPP Module 09](https://github.com/faleite/42cpp00/wiki/Module-X) | `Wiki`
 [CPP Tutorial (C++98)](https://cplusplus.com/doc/oldtutorial) | `Website`
 [CPP Reference](https://cplusplus.com/) | `Website`
 [CPP++ shell](http://cpp.sh) | `run code online`
