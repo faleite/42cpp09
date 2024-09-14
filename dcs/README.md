@@ -71,15 +71,16 @@ https://medium.com/@sofia.huppertz/cpp09-school42-1efa42df7803
 1. Classe BitcoinExchange:
 - Responsabilidade: Centralizar a lógica do programa.
 - Métodos:
-  - [ ] Carregar a base de dados de câmbio em um container (ex: std::map para mapear a data para a taxa de câmbio).
+  - [x] Carregar a base de dados de câmbio em um container (ex: std::map para mapear a data para a taxa de câmbio).
   - [ ] Processar o arquivo de entrada.
   - [ ] Calcular o valor de Bitcoin com base na data e taxa de câmbio.
 - Atributos:
-  - [ ] Um container (como std::map ou std::vector) para armazenar as taxas de câmbio.
+  - [x] Um container (como std::map ou std::vector) para armazenar as taxas de câmbio.
 2. Classe Date (opcional, mas recomendada):
 - Responsabilidade: Manipular e validar datas.
 - Métodos:
-  - [ ] Validar o formato da data.
+  - [x] Validar o formato da data.
+  - [ ] Validar data (dia, mês, ano).
   - [ ] Comparar datas para encontrar a mais próxima.
 3. Funções Utilitárias (fora das classes):
 - Validação de Entrada:

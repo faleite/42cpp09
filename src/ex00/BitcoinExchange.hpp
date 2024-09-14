@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 21:38:04 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/09/13 21:50:55 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/09/14 16:36:27 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 #include <string>
 #include <stdexcept>
 #include <map>
+#include <iomanip>
 
 class BitcoinExchange
 {
@@ -32,12 +33,13 @@ class BitcoinExchange
 		~BitcoinExchange();
 
 		void storeDatabase(const std::string &dbFile);
+		void printDatabase() const;
 };
 
 
 // utilFunctions
 
-bool isValidDate(const std::string &date)
+bool dateFormat(const std::string &date)
 {
 	if (date.size() != 10 || date[4] != '-' || date[7] != '-')
 		return (false);
@@ -59,21 +61,49 @@ BitcoinExchange::~BitcoinExchange() {}
 
 void BitcoinExchange::storeDatabase(const std::string &dbFile)
 {
-	std::ifstream file(dbFile);
+	// separar para usar no input.txt
+	std::ifstream file(dbFile.c_str());
 	if (!file.is_open())
 		throw std::runtime_error("Error:\nCould not open the file " + dbFile);
-	
-	std::string line;
-	while (std::getline(file, line))
+	//	
+	try
 	{
-		std::istringstream ss(line);
-		std::string date;
-		float value;
-		
-		if (std::getline(ss, date, ',') && (ss >> value))
+		std::string line;
+		if (!std::getline(file, line) || line != "date,exchange_rate")
 		{
-			isValidDate(date);
+			throw std::runtime_error("Error:\nInvalid data");
+		}
+		while (std::getline(file, line))
+		{
+			std::istringstream ss(line);
+			std::string date;
+			float value;
+			if (std::getline(ss, date, ',') && (ss >> value))
+			{
+				if (!dateFormat(date))
+					throw std::runtime_error("Error:\nDate: [" + date + "] invalid");
+				dataStore[date] = value;
+			}
+			else
+				throw std::runtime_error("Error:\nData: [" + line + "] invalid");
 		}
 	}
+	catch (const std::exception &e)
+	{
+		file.close();
+		throw;
+	}
+	file.close();
 }
+
+void BitcoinExchange::printDatabase() const
+{
+	std::map<std::string, float>::const_iterator it;
+	for (it = dataStore.begin(); it != dataStore.end(); ++it)
+	{
+		std::cout << it->first << "," << std::fixed << 
+		std::setprecision(2) << it->second << std::endl;
+	}
+}
+
 #endif // BITCOINEXCHANGE_HPP
