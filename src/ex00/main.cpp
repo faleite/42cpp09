@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 19:26:45 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/09/14 16:20:23 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/09/15 20:34:13 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,8 @@ int main()
     try 
     {
         BitcoinExchange exchange("data1.csv");
-        exchange.printDatabase();
+        // exchange.printDatabase();
+        exchange.processInputFile("input.txt");
     } 
     catch (const std::exception& e)
     {
