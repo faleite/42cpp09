@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 21:38:04 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/09/15 21:05:01 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/09/16 19:25:52 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,15 @@
 #include <float.h>
 
 #define DATE_MIN 2009
+
+enum validation
+{
+	VALID,
+    INVALID_DATE,
+    NEGATIVE_VALUE,
+    TOO_LARGE_VALUE,
+    BAD_INPUT
+};
 
 class BitcoinExchange
 {
@@ -69,6 +78,38 @@ bool validDate(const std::string &date)
 	return (true);
 }
 
+int validateInput(const std::string &date, float value)
+{
+	if (!dateFormat(date) || !validDate(date))
+		return (INVALID_DATE);
+	if (value <= 0)
+		return (NEGATIVE_VALUE);
+	if (value >= 1000)
+		return (TOO_LARGE_VALUE);
+	return (VALID);
+}
+
+void outputResult(std::string &date, float value)
+{
+	date.erase(date.find_last_not_of(" \n\r\t") + 1);
+	int result = validateInput(date, value);
+	switch (result)
+	{
+		case VALID:
+			std::cout << date << " => " << value << "\n";
+			break;
+		case INVALID_DATE:
+			std::cout << "Error: bad input => " << date << std::endl;
+			break;
+		case NEGATIVE_VALUE:
+			std::cout << "Error: not a positve number." << std::endl;
+			break;
+		case TOO_LARGE_VALUE:
+			std::cout << "Error: too large a number." << std::endl;
+			break;
+	}
+}
+
 // CANONICAL FORM
 
 BitcoinExchange::BitcoinExchange(): dataStore() {}
@@ -86,13 +127,13 @@ void BitcoinExchange::storeDatabase(const std::string &dbFile)
 {
 	std::ifstream file(dbFile.c_str());
 	if (!file.is_open())
-		throw std::runtime_error("Error:\nCould not open the file " + dbFile);
+		throw std::runtime_error("Error: could not open file " + dbFile);
 	try
 	{
 		std::string line;
 		if (!std::getline(file, line) || line != "date,exchange_rate")
 		{
-			throw std::runtime_error("Error:\nData: [" + line + "] invalid");
+			throw std::runtime_error("Error: Data: [" + line + "] invalid");
 		}
 		while (std::getline(file, line))
 		{
@@ -133,7 +174,7 @@ void BitcoinExchange::processInputFile(const std::string &inputFile)
 {
 	std::ifstream file(inputFile.c_str());
 	if (!file.is_open())
-		throw std::runtime_error("Error:\nCould not open the file " + inputFile);
+		throw std::runtime_error("Error: could not open file.");
 	try
 	{
 		std::string line;
@@ -145,23 +186,11 @@ void BitcoinExchange::processInputFile(const std::string &inputFile)
 		{
 			std::istringstream ss(line);
 			std::string date;
-			// std::string delimiter;
 			float value;
-			// ss >> date; // >> delimiter >> value;
-			// std::cout << date << "\n";
-			
 			if (std::getline(ss, date, '|') && (ss >> value))
-			{
-				date.erase(date.find_last_not_of(" \n\r\t") + 1);
-				// date.erase(0, date.find_first_not_of(" \n\r\t"));
-				std::cout << date << ":" << value << "\n";
-				// if (!dateFormat(date) || !validDate(date))
-				// 	throw std::runtime_error("Error:\nDate: [" + date + "] invalid");
-				// if (value < 0 || value > FLT_MAX)
-				// 	throw std::runtime_error("Error:\nValue: [" + line + "] invalid");
-			}
-			// else
-			// 	throw std::runtime_error("Error:\nData: [" + line + "] invalid");
+				outputResult(date, value);
+			else
+				std::cout << "Error: bad input => " << line << std::endl;
 		}
 	}
 	catch (const std::exception &e)

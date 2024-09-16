@@ -72,19 +72,19 @@ https://medium.com/@sofia.huppertz/cpp09-school42-1efa42df7803
 - Responsabilidade: Centralizar a lógica do programa.
 - Métodos:
   - [x] Carregar a base de dados de câmbio em um container (ex: std::map para mapear a data para a taxa de câmbio).
-  - [ ] Processar o arquivo de entrada.
+  - [x] Processar o arquivo de entrada.
   - [ ] Calcular o valor de Bitcoin com base na data e taxa de câmbio.
   - [x] Manipular e validar datas.
-    - [ ] Comparar datas para encontrar a mais próxima.
+  - [ ] Comparar datas para encontrar a mais próxima.
   - [x] Exibir DB
 - Atributos:
   - [x] Um container (como std::map ou std::vector) para armazenar as taxas de câmbio.
 2. Funções Utilitárias (fora das classes):
-- Validação de Entrada:
-  - [ ] Funções para validar o valor e a data fornecidos no arquivo de entrada, como verificar se o valor é um número positivo ou se a data está no formato correto.
-    - [x] Validar o formato da data.
-    - [x] Validar data (dia, mês, ano).
+- Validação do arquivo de Entrada:
   - [x] Funções responsáveis por abrir e ler arquivos (CSV e o arquivo de entrada).
+  - [x] Validar o formato da data.
+  - [x] Validar data (dia, mês, ano).
+  - [x] Validar valor (0 a 1000).
 
 ### Exemplo de Estrutura:
 ```cpp
