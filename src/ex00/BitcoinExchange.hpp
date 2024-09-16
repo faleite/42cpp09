@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 21:38:04 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/09/16 19:25:52 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/09/16 21:31:40 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ class BitcoinExchange
 		void storeDatabase(const std::string &dbFile);
 		void printDatabase() const;
 		void processInputFile(const std::string &inputFile);
+		void outputResult(std::string &date, float value);
+		float calculateBitcoin(const std::string &date, float value);
 };
 
 // utilFunctions
@@ -87,27 +89,6 @@ int validateInput(const std::string &date, float value)
 	if (value >= 1000)
 		return (TOO_LARGE_VALUE);
 	return (VALID);
-}
-
-void outputResult(std::string &date, float value)
-{
-	date.erase(date.find_last_not_of(" \n\r\t") + 1);
-	int result = validateInput(date, value);
-	switch (result)
-	{
-		case VALID:
-			std::cout << date << " => " << value << "\n";
-			break;
-		case INVALID_DATE:
-			std::cout << "Error: bad input => " << date << std::endl;
-			break;
-		case NEGATIVE_VALUE:
-			std::cout << "Error: not a positve number." << std::endl;
-			break;
-		case TOO_LARGE_VALUE:
-			std::cout << "Error: too large a number." << std::endl;
-			break;
-	}
 }
 
 // CANONICAL FORM
@@ -188,7 +169,7 @@ void BitcoinExchange::processInputFile(const std::string &inputFile)
 			std::string date;
 			float value;
 			if (std::getline(ss, date, '|') && (ss >> value))
-				outputResult(date, value);
+				this->outputResult(date, value);
 			else
 				std::cout << "Error: bad input => " << line << std::endl;
 		}
@@ -199,6 +180,42 @@ void BitcoinExchange::processInputFile(const std::string &inputFile)
 		throw;
 	}
 	file.close();
+}
+
+void BitcoinExchange::outputResult(std::string &date, float value)
+{
+	date.erase(date.find_last_not_of(" \n\r\t") + 1);
+	int status = validateInput(date, value);
+	
+	float result = this->calculateBitcoin(date, value);
+	
+	switch (status)
+	{
+		case VALID:
+			std::cout << date << " => " << value << " = " << result <<  std::endl;
+			break;
+		case INVALID_DATE:
+			std::cout << "Error: bad input => " << date << std::endl;
+			break;
+		case NEGATIVE_VALUE:
+			std::cout << "Error: not a positve number." << std::endl;
+			break;
+		case TOO_LARGE_VALUE:
+			std::cout << "Error: too large a number." << std::endl;
+			break;
+	}
+}
+
+float BitcoinExchange::calculateBitcoin(const std::string &date, float value)
+{
+	std::map<std::string, float>::iterator it = dataStore.lower_bound(date);
+	if (it == dataStore.end() || (it != dataStore.begin() && it->first != date))
+	{
+		if (it == dataStore.begin())
+			throw std::runtime_error("Error:\nNo valid date found in the database");
+		--it;
+	}
+	return (it->second * value);
 }
 
 #endif // BITCOINEXCHANGE_HPP

@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 19:26:45 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/09/16 18:26:03 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/09/16 21:34:45 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,11 +54,12 @@ baixa e não a mais alta.
 // }
 
 
-int main() 
+// int main(int argc, char *argv[])
+int main(void)
 {
     try 
     {
-        BitcoinExchange exchange("data1.csv");
+        BitcoinExchange exchange("data.csv");
         // exchange.printDatabase();
         exchange.processInputFile("input.txt");
     }

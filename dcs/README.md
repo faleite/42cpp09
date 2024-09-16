@@ -73,9 +73,9 @@ https://medium.com/@sofia.huppertz/cpp09-school42-1efa42df7803
 - Métodos:
   - [x] Carregar a base de dados de câmbio em um container (ex: std::map para mapear a data para a taxa de câmbio).
   - [x] Processar o arquivo de entrada.
-  - [ ] Calcular o valor de Bitcoin com base na data e taxa de câmbio.
+  - [x] Calcular o valor de Bitcoin com base na data e taxa de câmbio.
   - [x] Manipular e validar datas.
-  - [ ] Comparar datas para encontrar a mais próxima.
+  - [X] Comparar datas para encontrar a mais próxima.
   - [x] Exibir DB
 - Atributos:
   - [x] Um container (como std::map ou std::vector) para armazenar as taxas de câmbio.
