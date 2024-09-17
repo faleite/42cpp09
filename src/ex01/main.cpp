@@ -6,9 +6,11 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 19:31:45 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/09/12 19:40:47 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/09/17 22:02:59 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "RPN.hpp"
 
 /*
 Você deve criar um programa com estas restrições:
@@ -25,4 +27,32 @@ Você deve usar pelo menos um contêiner em seu código para validar este
 exercício.
 
 Você não precisa gerenciar os colchetes ou números decimais.
+
+7 7 * 7 - 
+
+operando: 7 7
+operador: *
+operacao: (7 * 7 = 49)
+operando: 49 7
+operacao: (49 - 7 = 42)
+operando: 42
 */
+
+int	main(int argc, char *argv[])
+{
+	if (argc != 2)
+	{
+		std::cerr << "Error: Invalid number of arguments" << std::endl;
+        return (1);
+	}
+	try
+	{
+		RPN rpn;
+		rpn.storeNumbers(argv[1]);
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
+	
+}
