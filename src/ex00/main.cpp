@@ -6,66 +6,68 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 19:26:45 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/09/16 21:34:45 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/09/17 19:00:36 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/*
-Você precisa criar um programa que emita o valor de uma certa quantia de 
-bitcoin em uma certa data.
-
-Este programa deve usar um banco de dados no formato csv que representará o preço 
-do bitcoin ao longo do tempo. Este banco de dados é fornecido com este assunto.
-
-O programa tomará como entrada um segundo banco de dados, armazenando os 
-diferentes preços/datas para avaliar.
-
-Seu programa deve respeitar estas regras:
-- O nome do programa é btc.
-- Seu programa deve tomar um arquivo como argumento.
-- Cada linha neste arquivo deve usar o seguinte formato: "data | valor".
-- Uma data válida sempre estará no seguinte formato: Ano-Mês-Dia.
-- ​​Um valor válido deve ser um float ou um inteiro positivo, entre 0 e 1000.
-
-Você deve usar pelo menos um contêiner em seu código para validar este
-exercício. 
-Você deve lidar com possíveis erros com uma mensagem de erro apropriada.
-
-Seu programa usará o valor em seu arquivo de entrada.
-
-Seu programa deve exibir na saída padrão o resultado do valor multiplicado pela 
-taxa de câmbio de acordo com a data indicada em seu banco de dados.
-
-Se a data usada na entrada não existir em seu BD, então você deve usar a 
-data mais próxima contida em seu BD. Tenha cuidado para usar a data mais 
-baixa e não a mais alta.
-*/
-
 #include "BitcoinExchange.hpp"
 
-// Função para obter o valor do Bitcoin para uma data específica
-// float getBitcoinValue(const std::string& date) const {
-//     std::map<std::string, float>::const_iterator it = exchangeRates.find(date);
-//     if (it != exchangeRates.end()) {
-//         return it->second;
-//     } else {
-//         throw std::runtime_error("Error: Date not found in the database.");
-//     }
-// }
-
-
-// int main(int argc, char *argv[])
-int main(void)
+int main(int argc, char *argv[])
 {
+    if (argc != 2)
+    {
+        std::cerr << "Error: Invalid number of arguments\n"
+        << "try: ./btc file" << std::endl;
+        return (1);
+    }
     try 
     {
-        BitcoinExchange exchange("data.csv");
-        // exchange.printDatabase();
-        exchange.processInputFile("input.txt");
+        BitcoinExchange btc;
+        btc.storeDatabase("data.csv");
+        btc.processInputFile(argv[1]);
     }
     catch (const std::exception& e)
     {
         std::cerr << e.what() << std::endl;
     }   
-    return 0;
+    return (0);
+}
+
+// utilFunctions
+
+bool dateFormat(const std::string &date)
+{
+	if (date.size() != 10 || date[4] != '-' || date[7] != '-')
+		return (false);
+	return (true);
+}
+
+bool validDate(const std::string &date)
+{
+	std::istringstream ss(date);
+	int year, month, day;
+	char delimiter;
+	ss >> year >> delimiter >> month >> delimiter >> day;
+	if (year < DATE_MIN || month < 1 || month > 12 || day < 1 || day > 31)
+		return (false);
+	if ((month == 4 || month == 6 || month ==  9 || month == 11) && day > 30)
+		return (false);
+	if (month == 2)
+	{
+		bool leap = (year % 4 == 0 && (year % 100 != 0 || year % 400 == 0));
+		if (day > (leap ? 29 : 28))
+			return (false);
+	}
+	return (true);
+}
+
+int validateInput(const std::string &date, float value)
+{
+	if (!dateFormat(date) || !validDate(date))
+		return (INVALID_DATE);
+	if (value <= 0)
+		return (NEGATIVE_VALUE);
+	if (value > 1000)
+		return (TOO_LARGE_VALUE);
+	return (VALID);
 }

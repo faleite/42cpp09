@@ -60,9 +60,11 @@ ex00/
 ├── BitcoinExchange.cpp
 ├── BitcoinExchange.hpp
 └── input.txt (Exemplo)
+└── data.csv (data base)
 ```
 
-https://medium.com/@sofia.huppertz/cpp09-school42-1efa42df7803
+<!-- https://medium.com/@sofia.huppertz/cpp09-school42-1efa42df7803 -->
+
 </details>
 <details>
   <summary>Estrutura</summary>
@@ -142,6 +144,23 @@ taxa de câmbio de acordo com a data indicada em seu banco de dados.
 Se a data usada na entrada não existir em seu BD, então você deve usar a 
 data mais próxima contida em seu BD. Tenha cuidado para usar a data mais 
 baixa e não a mais alta.
+</details>
+
+<details>
+  <summary>Utils</summary>
+
+```cpp
+// Função para obter o valor do Bitcoin para uma data específica
+float getBitcoinValue(const std::string& date) const {
+    std::map<std::string, float>::const_iterator it = exchangeRates.find(date);
+    if (it != exchangeRates.end()) {
+        return it->second;
+    } else {
+        throw std::runtime_error("Error: Date not found in the database.");
+    }
+}
+```
+
 </details>
 
 <!-- [↑ Index ↑](#index) -->
