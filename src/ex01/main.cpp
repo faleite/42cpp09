@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 19:31:45 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/09/17 22:02:59 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/09/18 21:22:47 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,12 @@ operando: 42
 
 int	main(int argc, char *argv[])
 {
-	if (argc != 2)
+	if (argc != 2 || emptyWhitespace(argv[1]))
 	{
-		std::cerr << "Error: Invalid number of arguments" << std::endl;
+		std::cerr << "Error: invalid expression" << std::endl;
         return (1);
 	}
+	
 	try
 	{
 		RPN rpn;
@@ -55,4 +56,5 @@ int	main(int argc, char *argv[])
 		std::cerr << e.what() << std::endl;
 	}
 	
+	return (0);
 }
