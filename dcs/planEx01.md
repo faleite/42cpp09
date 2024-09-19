@@ -162,6 +162,3 @@ float getBitcoinValue(const std::string& date) const {
 ```
 
 </details>
-
-<!-- [↑ Index ↑](#index) -->
-
