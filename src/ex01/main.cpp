@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 19:31:45 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/09/18 21:22:47 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/09/19 17:31:49 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,6 @@ Você deve usar pelo menos um contêiner em seu código para validar este
 exercício.
 
 Você não precisa gerenciar os colchetes ou números decimais.
-
-7 7 * 7 - 
-
-operando: 7 7
-operador: *
-operacao: (7 * 7 = 49)
-operando: 49 7
-operacao: (49 - 7 = 42)
-operando: 42
 */
 
 int	main(int argc, char *argv[])

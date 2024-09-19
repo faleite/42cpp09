@@ -6,7 +6,7 @@
 #    By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/14 20:38:06 by faaraujo          #+#    #+#              #
-#    Updated: 2024/09/17 17:57:31 by faaraujo         ###   ########.fr        #
+#    Updated: 2024/09/19 17:43:33 by faaraujo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@
 NAME = btc
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
-SRC = BitcoinExchange.cpp main.cpp
+SRC = BitcoinExchange.cpp utilFunctions.cpp main.cpp
 OBJS = $(SRC:.cpp=.o)
 
 #******************************************************************************#
