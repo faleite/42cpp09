@@ -7,7 +7,7 @@ alias run='c++ -Wall -Wextra -Werror -std=c++98 -g main.cpp && ./a.out'
 alias rma='rm ./a.out'
 alias rua='./a.out'
 alias mf='make fclean'
-alias ex='make re && ./RPN "7 7 * 7 -"'
+alias ex='make re && ./PmergeMe 3 5 9 7 4'
 alias val='make re && valgrind ./btc'
 
 alias ra='valgrind ./RPN "8 9 * 9 - 9 - 9 - 4 - 1 +"'

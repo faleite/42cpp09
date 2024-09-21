@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 21:28:38 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/09/19 18:35:50 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/09/21 14:15:19 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 #include <string>
 #include <stdexcept>
 #include <stack>
-#include <deque>
+#include <list>
 #include <cstdlib>
 
 enum tokens
@@ -32,7 +32,7 @@ enum tokens
 class RPN
 {
 	private:
-		std::stack< double, std::deque<double> > _numbers;
+		std::stack< double, std::list<double> > _numbers;
 		long _num;
 	public:
 		RPN();
