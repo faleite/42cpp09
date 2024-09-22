@@ -6,7 +6,7 @@
 #    By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/14 20:38:06 by faaraujo          #+#    #+#              #
-#    Updated: 2024/09/21 15:10:31 by faaraujo         ###   ########.fr        #
+#    Updated: 2024/09/22 13:08:11 by faaraujo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@
 NAME = PmergeMe
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
-SRC = main.cpp
+SRC = PmergeMe.cpp algoVector.cpp algoDeque.cpp utilsFunctions.cpp main.cpp
 OBJS = $(SRC:.cpp=.o)
 
 #******************************************************************************#

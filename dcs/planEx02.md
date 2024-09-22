@@ -8,76 +8,22 @@
 ### Etapas Iniciais para o Desenvolvimento do Projeto
 
 1. **Definição do Algoritmo Merge-Insert Sort:**
-   - [ ] Pesquise e entenda o algoritmo Ford-Johnson (merge-insert sort).
-   - [ ] Planeje a implementação do algoritmo para dois contêineres diferentes (por exemplo, `std::vector` e `std::list`).
+   - [x] Pesquise e entenda o algoritmo Ford-Johnson (merge-insert sort).
+   - [x] Planeje a implementação do algoritmo para dois contêineres diferentes (por exemplo, `std::vector` e `std::list`).
 
 2. **Planejamento das Funções Principais:**
-   - [ ] Função para leitura e validação dos argumentos de entrada.
-   - [ ] Função para exibir a sequência de inteiros não classificados.
-   - [ ] Função para aplicar o algoritmo de ordenação usando o primeiro contêiner.
-   - [ ] Função para aplicar o algoritmo de ordenação usando o segundo contêiner.
-   - [ ] Função para medir e exibir o tempo de execução de cada contêiner.
-   - [ ] Função para tratamento de erros e exibição de mensagens de erro.
+   - [x] leitura e validação dos argumentos de entrada.
+   - [x] exibir a sequência de inteiros não classificados.
+   - [x] aplicar o algoritmo de ordenação usando o primeiro contêiner.
+   - [x] aplicar o algoritmo de ordenação usando o segundo contêiner.
+   - [ ] medir e exibir o tempo de execução de cada contêiner.
+   - [x] tratamento de erros e exibição de mensagens de erro.
 
 3. **Especificação dos Arquivos de Cabeçalho:**
-   - [ ] Defina as classes e funções no arquivo `PmergeMe.hpp`:
-     ```cpp
-     #ifndef PMERGEME_HPP
-     #define PMERGEME_HPP
-
-     #include <vector>
-     #include <list>
-     #include <string>
-
-     class PmergeMe {
-     public:
-         PmergeMe();
-         ~PmergeMe();
-
-         void readInput(int argc, char* argv[]);
-         void displayUnsortedSequence() const;
-         void sortUsingVector();
-         void sortUsingList();
-         void displaySortedSequence() const;
-         void displayExecutionTime() const;
-
-     private:
-         std::vector<int> vectorSequence;
-         std::list<int> listSequence;
-         std::string unsortedSequence;
-         std::string sortedSequence;
-         double vectorSortTime;
-         double listSortTime;
-
-         void mergeInsertSortVector(std::vector<int>& sequence);
-         void mergeInsertSortList(std::list<int>& sequence);
-     };
-
-     #endif // PMERGEME_HPP
-     ```
+   - [x] Defina as classes e funções no arquivo `PmergeMe.hpp`
 
 4. **Implementação do Arquivo Principal:**
-   - [ ] Estruture o arquivo `main.cpp` para inicializar o programa e chamar as funções principais:
-     ```cpp
-     #include "PmergeMe.hpp"
-     #include <iostream>
-
-     int main(int argc, char* argv[]) {
-         try {
-             PmergeMe pmergeMe;
-             pmergeMe.readInput(argc, argv);
-             pmergeMe.displayUnsortedSequence();
-             pmergeMe.sortUsingVector();
-             pmergeMe.sortUsingList();
-             pmergeMe.displaySortedSequence();
-             pmergeMe.displayExecutionTime();
-         } catch (const std::exception& e) {
-             std::cerr << "Erro: " << e.what() << std::endl;
-             return 1;
-         }
-         return 0;
-     }
-     ```
+   - [x] Estruture o arquivo `main.cpp` para inicializar o programa e chamar as funções principais
 
 ### Próximos Passos
 - [ ] Implementar as funções definidas no arquivo de cabeçalho.
