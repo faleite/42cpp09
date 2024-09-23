@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 21:38:04 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/09/23 10:37:25 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/09/23 14:08:07 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,16 +39,15 @@ void BitcoinExchange::storeDatabase(const std::string &dbFile)
 	try
 	{
 		std::string line;
-		if (!std::getline(file, line) || line != "date,exchange_rate")
-		{
-			throw std::runtime_error("Error: Data: [" + line + "] invalid");
-		}
+		int i = 0;
 		while (std::getline(file, line))
 		{
 			std::istringstream ss(line);
 			std::string date;
 			float value;
-			if (std::getline(ss, date, ',') && (ss >> value))
+			if (i == 0 && line == "date,exchange_rate")
+				continue ;
+			else if (std::getline(ss, date, ',') && (ss >> value))
 			{
 				if (!dateFormat(date) || !validDate(date))
 					throw std::runtime_error("Error:\nDate: [" + date + "] invalid");
@@ -57,7 +56,8 @@ void BitcoinExchange::storeDatabase(const std::string &dbFile)
 				dataStore[date] = value;
 			}
 			else
-				throw std::runtime_error("Error:\nData: [" + line + "] invalid");
+				throw std::runtime_error("Error:\nLine: [" + line + "] invalid");
+			i++;
 		}
 	}
 	catch (const std::exception &e)
@@ -76,19 +76,19 @@ void BitcoinExchange::processInputFile(const std::string &inputFile)
 	try
 	{
 		std::string line;
-		if (!std::getline(file, line) || line != "date | value")
-		{
-			throw std::runtime_error("Error:\nData: [" + line + "] invalid");
-		}
+		int i = 0;
 		while (std::getline(file, line))
 		{
 			std::istringstream ss(line);
 			std::string date;
 			float value;
-			if (std::getline(ss, date, '|') && (ss >> value))
+			if (i == 0 && line == "date | value")
+				continue ;
+			else if (std::getline(ss, date, '|') && (ss >> value))
 				this->outputResult(date, value);
 			else
 				std::cout << "Error: bad input => " << line << std::endl;
+			i++;
 		}
 	}
 	catch (const std::exception &e)
