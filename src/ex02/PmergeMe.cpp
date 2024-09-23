@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/21 14:06:12 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/09/22 15:44:23 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/09/23 12:43:39 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ PmergeMe::~PmergeMe() {}
 
 // Member Functions
 
-void PmergeMe::handleInput(int argc, char *argv[])
+void PmergeMe::dataManagement(int argc, char *argv[])
 {
 	if (argc == 1)
 		throw std::runtime_error("Invalid number of the arguments");
@@ -39,34 +39,25 @@ void PmergeMe::handleInput(int argc, char *argv[])
 	std::clock_t start = std::clock();
 	this->_numElements = argc - 1;
 	int arr[this->_numElements];
-	for (size_t i = 1; i < this->_numElements; ++i)
-		arr[i - 1] = stringToNumber(argv[i]);
+	for (size_t i = 0; i < this->_numElements; ++i)
+		arr[i] = stringToNumber(argv[i + 1]);
 	std::clock_t end = std::clock();
 	
 	double dataManageTime = static_cast<double>(end - start) / CLOCKS_PER_SEC * 1000.0;
 	
 	start = std::clock();
-	this->_intVector.assign(arr, arr + this->_numElements - 1);
+	this->_intVector.assign(arr, arr + this->_numElements);
 	end = std::clock();
 	double pushDataVectorTime = static_cast<double>(end - start) / CLOCKS_PER_SEC * 1000.0;
 	
 	start = std::clock();
-	this->_intDeque.assign(arr, arr + this->_numElements - 1);
+	this->_intDeque.assign(arr, arr + this->_numElements);
 	end = std::clock();
 	double pushDataDequeTime = static_cast<double>(end - start) / CLOCKS_PER_SEC * 1000.0;
 
-	_dequeProcessTime = dataManageTime + pushDataDequeTime;
-	_vectorProcessTime = dataManageTime + pushDataVectorTime;
+	_dequeDataManageTime = dataManageTime + pushDataDequeTime;
+	_vectorDataManageTime = dataManageTime + pushDataVectorTime;
 }
-
-// void PmergeMe::displayNumbers(const std::string &msg) const
-// {
-// 	std::cout << msg;
-// 	for (std::deque<int>::const_iterator it = this->_intDeque.begin(); 
-// 		it != this->_intDeque.end(); ++it)
-// 		std::cout << *it << " ";
-// 	std::cout << std::endl;
-// }
 
 void PmergeMe::displayNumbers(const std::string &msg) const
 {
@@ -87,21 +78,25 @@ void PmergeMe::displayProcess()
 	
 	displayNumbers("After: ");
 	
-	// std::cout << "Data manage vec: " << _vectorProcessTime << "\n";
 	double vectorSortTime = static_cast<double>(end - start) / CLOCKS_PER_SEC * 1000.0;
-	_vectorProcessTime = _vectorProcessTime + vectorSortTime;
-	// std::cout << "sort vec: " << vectorSortTime << "\n";
-	std::cout << "Time to process a range of " << _numElements
-	<< " elements with std::vector: " << _vectorProcessTime << " us" << std::endl;
+	_vectorProcessTime = _vectorDataManageTime + vectorSortTime;
 
 	start = std::clock();
 	algoFordJonhsonDeque();
 	end = std::clock();
 	
-	// std::cout <<  "Data manage deq: " << _dequeProcessTime << "\n";
 	double dequeSortTime = static_cast<double>(end - start) / CLOCKS_PER_SEC * 1000.0;
-	_dequeProcessTime = _dequeProcessTime + dequeSortTime;
-	// std::cout << "sort deq: " << dequeSortTime << "\n";
+	_dequeProcessTime = _dequeDataManageTime + dequeSortTime;
+
 	std::cout << "Time to process a range of " << _numElements
-	<< " elements with std::deque: " << _dequeProcessTime << " us" << std::endl;	
+	<< " elements with std::vector: \n"
+	<< "		  Vector Data Management Time: " << _vectorDataManageTime << "\n"
+	<< "		  Vector Sorting Time: " << vectorSortTime << "\n"
+	<< "Total Vector Processing Time: " << _vectorProcessTime << " ms" << std::endl;
+	
+	std::cout << "Time to process a range of " << _numElements
+	<< " elements with std::deque: " << "\n"
+	<< "		  Deque Data Management Time: " << _dequeDataManageTime << "\n"
+	<< "		  Deque Sorting Time: " << dequeSortTime << "\n"
+	<< "Total Deque Processing: " << _dequeProcessTime << " ms" << std::endl;
 }

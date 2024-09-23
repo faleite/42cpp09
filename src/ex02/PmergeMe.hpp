@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/21 14:06:12 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/09/22 15:40:45 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/09/23 12:43:16 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define PMERGEME_HPP
 
 #include <iostream>
-
 #include <string>
 #include <sstream>
 #include <cstdlib>
@@ -22,7 +21,6 @@
 #include <cmath> // std::sqrt
 #include <ctime>
 #include <stdexcept>
-
 #include <vector>
 #include <deque>
 
@@ -34,6 +32,8 @@ class PmergeMe
 		unsigned int		_numElements;
 		double 				_vectorProcessTime;
 		double 				_dequeProcessTime;
+		double 				_vectorDataManageTime;
+		double 				_dequeDataManageTime;
 		
 	public:
 		PmergeMe();
@@ -41,7 +41,7 @@ class PmergeMe
 		PmergeMe &operator=(const PmergeMe &assignCopy);
 		~PmergeMe();
 
-		void handleInput(int argc, char *argv[]);
+		void dataManagement(int argc, char *argv[]);
 		void displayNumbers(const std::string &msg) const;
 		void displayProcess();
 		

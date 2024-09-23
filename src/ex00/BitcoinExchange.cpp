@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 21:38:04 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/09/19 17:40:35 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/09/23 10:37:25 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,7 +132,7 @@ float BitcoinExchange::calculateBitcoin(const std::string &date, float value)
 			throw std::runtime_error("Error:\nNo valid date found in the database");
 		--it;
 	}
-	return (it->second * value);
+	return (fabs(it->second * value));
 }
 
 void BitcoinExchange::getDatabase() const

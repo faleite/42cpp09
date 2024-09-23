@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 17:40:06 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/09/19 17:44:20 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/09/23 10:14:30 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int validateInput(const std::string &date, float value)
 {
 	if (!dateFormat(date) || !validDate(date))
 		return (INVALID_DATE);
-	if (value <= 0)
+	if (value < 0)
 		return (NEGATIVE_VALUE);
 	if (value > 1000)
 		return (TOO_LARGE_VALUE);

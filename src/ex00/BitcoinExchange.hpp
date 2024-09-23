@@ -6,7 +6,7 @@
 /*   By: faaraujo <faaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 21:38:04 by faaraujo          #+#    #+#             */
-/*   Updated: 2024/09/17 18:31:48 by faaraujo         ###   ########.fr       */
+/*   Updated: 2024/09/23 10:35:21 by faaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 #include <stdexcept>
 #include <map>
 #include <iomanip>
+#include <cmath>
 #include <float.h>
 
 #define DATE_MIN 2009
@@ -36,6 +37,7 @@ enum validation
 class BitcoinExchange
 {
 	private:
+		// why they chose to use this container and not another?
 		std::map<std::string, float> dataStore; // for csv file
 	public:
 		BitcoinExchange();
