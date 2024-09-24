@@ -82,12 +82,12 @@ the containers in CPP.*
 ## Study resources
 Resource | Source
 ---------|:-----:
-[CPP Module 09](https://github.com/faleite/42cpp00/wiki/Module-X) | `Wiki`
+[my cpp09 workflow](https://github.com/faleite/42cpp09/tree/main/dcs) | `GitHub`
 [CPP Tutorial (C++98)](https://cplusplus.com/doc/oldtutorial) | `Website`
 [CPP Reference](https://cplusplus.com/) | `Website`
 [CPP++ shell](http://cpp.sh) | `run code online`
 [C++ Roadmap](https://roadmap.sh/cpp) | `roadmap.sh`
-[Wiki 42cpp](https://github.com/qingqingqingli/CPP/wiki) | `GitHub`
+[Wiki 42cpp](https://github.com/faleite/CPP_42_School/wiki) | `Wiki`
 [Os 4 Pilares da Orientação a Objetos](https://www.youtube.com/live/j2w8sMWhngo?si=eVnd-m_T-J3S8XpA) | `YouTube`
 <!-- [Modules 00-04](https://github.com/pin3dev/42_CPP_Modules_00-04) | `GitHub` 
 [piscine CPP](https://github.com/paulahemsi/piscine_cpp) | `GitHub` -->
